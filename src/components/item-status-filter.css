@@ -1,0 +1,19 @@
+.filter-button
+{
+    background-color: #fff;
+    border-width: 1px;
+    border-color: black;
+    margin: 1px;
+    border-radius: 4px;
+}
+
+.filter-button:hover
+{
+    background-color: grey;
+    color:white;
+}
+.filter-button.active
+{
+    background-color: black;
+    color:white;
+}

@@ -37,3 +37,12 @@
     background-color:green;
     color:white;
 }
+.done 
+{
+    text-decoration: line-through;
+}
+.important
+{
+    color:tomato;
+    font-weight: bold;
+}

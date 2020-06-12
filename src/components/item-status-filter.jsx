@@ -6,7 +6,7 @@ import './item-status-filter.css';
 const ItemStatusFilter = () => 
 {
     return (
-        <div>
+        <div className="item-status-filter">
             <SearchPanel/>
             <button className="filter-button active">
                 All

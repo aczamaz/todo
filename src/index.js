@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import TodoList from './components/todo-list';
 import ItemStatusFilter from './components/item-status-filter';
 import AppHeader from './components/app-header';
+import './index.css';
 
 const App = ()=>{
     const TodoData = 
@@ -25,7 +26,7 @@ const App = ()=>{
     ];
 
     return (
-        <div>
+        <div className="todo-wraper">
             <AppHeader/>
             <ItemStatusFilter/>
             <TodoList todos={TodoData} />

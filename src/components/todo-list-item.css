@@ -1,0 +1,39 @@
+.item-wraper
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-button
+{
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    margin: 0 5px;
+    font-size: 20px;
+}
+
+.item-button_remove
+{
+    background-color:pink;
+    border-color:red;
+    color:red;
+}
+.item-button_remove:hover
+{
+    background-color:red;
+    color:white;
+}
+
+.item-button_warrning
+{
+    background-color:greenyellow;
+    border-color:green;
+    color:green;
+}
+
+.item-button_warrning:hover
+{
+    background-color:green;
+    color:white;
+}

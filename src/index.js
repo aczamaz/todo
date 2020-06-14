@@ -54,12 +54,12 @@ class App extends Component {
         ];
         return newArray;
     }
-    addItem()
+    addItem(label)
     {
         this.setState(
             ({todoData})=>
             {
-                const newItem = this.createItem('new Item')
+                const newItem = this.createItem(label)
 
                 const newArray = [...todoData,newItem];
 
@@ -98,7 +98,7 @@ class App extends Component {
                     onDoneTask={(id)=>{this.doneTask(id)}}
                     onImportantTask={(id)=>{this.importantTask(id)}}
                 />
-                <AddItem onAddItem={()=>this.addItem()}/>
+                <AddItem onAddItem={(label)=>this.addItem(label)}/>
             </div>
         );
     }

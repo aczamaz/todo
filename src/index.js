@@ -4,28 +4,28 @@ import TodoList from './components/todo-list';
 import ItemStatusFilter from './components/item-status-filter';
 import AppHeader from './components/app-header';
 import './index.css';
+import AddItem from './components/add-item';
 
 class App extends Component {
+    id = 0;
     state =
     {
         todoData :
         [
-            {
-                id:1,
-                label:'Drink Coffe',
-                important:false
-            },
-            {
-                id:2,
-                label:'Make Awsome App',
-                important:true
-            },
-            {
-                id:3,
-                label:'Have a luch',
-                important:false
-            },
+            this.createItem('Drink Coffe'),
+            this.createItem('Make Awsome App'),
+            this.createItem('Have a luch')
         ]
+    }
+
+    createItem(label)
+    {
+        return{
+            id:this.id++,
+            label:label,
+            important:false,
+            done:false
+        }
     }
     deleteItem(id)
     {
@@ -41,16 +41,64 @@ class App extends Component {
             }
         )
     }
+    toggleItem(arr,id,property)
+    {
+        
+        const idX = arr.findIndex((el)=>el.id === id)
+        const oldItem = arr[idX];
+        const newItem = {...oldItem,[property]:!oldItem[property]};
+        const newArray = [
+            ...arr.slice(0,idX),
+            newItem,
+            ...arr.slice(idX+1)
+        ];
+        return newArray;
+    }
+    addItem()
+    {
+        this.setState(
+            ({todoData})=>
+            {
+                const newItem = this.createItem('new Item')
+
+                const newArray = [...todoData,newItem];
+
+                return {todoData:newArray};
+            }
+        )
+    }
+    doneTask(id)
+    {
+        this.setState(
+            ({todoData})=>{
+                return {todoData:this.toggleItem(todoData,id,'done')}
+            }
+        )
+    }
+    importantTask(id)
+    {
+        this.setState(
+            ({todoData})=>{
+                return {todoData:this.toggleItem(todoData,id,'important')}
+            }
+        )
+    }
     render()
     {
+        const todoData = this.state.todoData;
+        const doneTaskCount = todoData.filter((el)=>el.done).length;
+        const notDoneTaskCount = todoData.length - doneTaskCount;
         return (
             <div className="todo-wraper">
-                <AppHeader/>
+                <AppHeader done={doneTaskCount} notDone={notDoneTaskCount}/>
                 <ItemStatusFilter/>
                 <TodoList
                     todos={this.state.todoData} 
                     onDeleted={(id)=>{this.deleteItem(id)}}
+                    onDoneTask={(id)=>{this.doneTask(id)}}
+                    onImportantTask={(id)=>{this.importantTask(id)}}
                 />
+                <AddItem onAddItem={()=>this.addItem()}/>
             </div>
         );
     }

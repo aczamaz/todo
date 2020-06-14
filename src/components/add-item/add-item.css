@@ -1,0 +1,30 @@
+.add-text
+{
+    width: 100%;
+}
+
+.add-item__input
+{
+    width: 84%;
+    margin-top:5px;
+    border-style: groove;
+    border-radius: 5px;
+    border-width: 2px;
+    margin-right: 4px;
+    border-color: #dfdfdf;
+}
+
+.add-item__button
+{
+    background-color: #fff;
+    border-width: 1px;
+    border-color: black;
+    margin: 1px;
+    border-radius: 4px;
+}
+
+.add-item__button:hover
+{
+    background-color: grey;
+    color:white;
+}

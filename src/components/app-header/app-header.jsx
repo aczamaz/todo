@@ -1,9 +1,9 @@
 import React from 'react';
 import './app-header.css';
 
-const AppHeader = ({count = 3, done = 2})=>
+const AppHeader = ({notDone, done})=>
 {
-    const result = ` Задач ${count}, выполненно ${done}`;
+    const result = ` Задач осталось ${notDone}, выполненно ${done}`;
 
     return (
         <div className="app-header">

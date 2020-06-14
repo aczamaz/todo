@@ -1,7 +1,9 @@
 .search-input
 {
-    border-radius: 3px;
-    border-width: 1px;
+    border-style: groove;
+    border-radius: 5px;
+    border-width: 2px;
     margin-right: 4px;
+    border-color: #dfdfdf;
     width:73%;
 }

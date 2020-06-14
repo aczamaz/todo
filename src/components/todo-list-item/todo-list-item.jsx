@@ -1,30 +1,8 @@
 import React,{ Component } from 'react';
 import './todo-list-item.css';
 
-export default class TodoListItem extends Component
+const TodoListItem = ({done,important,label,onDeleted,onDoneTask,onImportantTask})=>
 {
-
-    state = {
-        done:false,
-        important:false
-    }
-
-    onLabelClick = ()=>
-    {
-        this.setState(({done})=>{
-            return{done:!done};
-        })
-    }
-    onMarkImportant = ()=>
-    {
-        this.setState(({important})=>{
-            return {important:!important};
-        })
-    }
-    render()
-    {
-        const {label,onDeleted} = this.props;
-        const { done,important } =this.state;
         let className = "";
         
         className += (done)?"done ":"";
@@ -34,14 +12,14 @@ export default class TodoListItem extends Component
             <div className="item-wraper"> 
                 <span
                     className={className}
-                    onClick={ this.onLabelClick }
+                    onClick={()=>onDoneTask() }
                 >
                     {label}
                 </span>
                 <div>
                     <button
                         className="item-button item-button_remove"
-                        onClick={onDeleted}
+                        onClick={()=>onDeleted()}
                     >
                         <svg className="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -50,7 +28,7 @@ export default class TodoListItem extends Component
                     </button>
                     <button
                         className="item-button item-button_warrning"
-                        onClick={this.onMarkImportant}
+                        onClick={()=>onImportantTask()}
                     >
                         <svg className="bi bi-exclamation" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
@@ -59,5 +37,6 @@ export default class TodoListItem extends Component
                 </div>
             </div>
         );    
-    }
 }
+
+export default TodoListItem;

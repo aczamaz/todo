@@ -6,10 +6,14 @@ const TodoList = ({todos,onDeleted,onDoneTask,onImportantTask})=>
 {
     const todoList = todos.map((item)=>
     {
-        const {id,...itemProps} = item;
+        const {id,hideSeacrh,hideType,...itemProps} = item;
+
+        let classNameWr = "list-group-item ";
+        classNameWr += (hideSeacrh)?"search-hide ":"";
+        classNameWr += (hideType)?"type-hide ":"";
 
         return (
-        <li key={id} className="list-group-item">
+        <li key={id} className={classNameWr}>
             <TodoListItem {...itemProps}
                 onDeleted = {()=>{onDeleted(id);}}
                 onDoneTask={()=>{onDoneTask(id);}}

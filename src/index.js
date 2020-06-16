@@ -24,7 +24,9 @@ class App extends Component {
             id:this.id++,
             label:label,
             important:false,
-            done:false
+            done:false,
+            hideSeacrh:false,
+            hideType:false
         }
     }
     deleteItem(id)
@@ -83,6 +85,38 @@ class App extends Component {
             }
         )
     }
+    searchTask(name)
+    {   
+        const newArray = this.state.todoData.map(
+                (el)=>
+                {
+                    if(!(el.label.toUpperCase().indexOf(name.toUpperCase())+1))
+                        return {...el,hideSeacrh:true}
+                    else
+                        return {...el,hideSeacrh:false}
+                }
+            )
+        
+        this.setState({todoData:newArray});
+        
+    }
+    filterItems(type)
+    {        
+        const newArray = this.state.todoData.map(
+            (el)=>
+            {
+                if(type === 'All')
+                    return {...el,hideType:false}
+                if(type === 'Active')
+                    return {...el,hideType:(el.done)?true:false}
+                if(type === 'Done')
+                    return {...el,hideType:(!el.done)?true:false}
+            }
+        )
+        this.setState({todoData:newArray});
+    
+    this.setState({todoData:newArray});
+    }
     render()
     {
         const todoData = this.state.todoData;
@@ -91,7 +125,10 @@ class App extends Component {
         return (
             <div className="todo-wraper">
                 <AppHeader done={doneTaskCount} notDone={notDoneTaskCount}/>
-                <ItemStatusFilter/>
+                <ItemStatusFilter
+                    onSearchTask={(name)=>{this.searchTask(name)}}
+                    OnFilterItems={(type)=>{this.filterItems(type)}}
+                />
                 <TodoList
                     todos={this.state.todoData} 
                     onDeleted={(id)=>{this.deleteItem(id)}}
